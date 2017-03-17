@@ -1,0 +1,19 @@
+{
+  "studentinfo": [
+
+    {
+      "name": "Adam Jam" ,
+      "hobby": "jugar" ,
+      "age":30,
+      "phone": "335 895",
+      "address": "House #33, ABC Lane, ABC CITY 06987"
+    },
+    {
+      "name": "Javier" ,
+      "hobby": "dinero" ,
+      "age":20,
+      "phone": "325 895",
+      "address": "hellhaven 356"
+    }
+  ]
+}

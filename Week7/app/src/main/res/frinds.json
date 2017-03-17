@@ -1,0 +1,25 @@
+{
+  "Amigos": [
+    {
+      "name": "juan",
+      "Hobby": "juegos",
+      "age":"17",
+      "phone": "666 666",
+      "address":"hellstreet"
+    },
+    {
+      "name": "Alan",
+      "Hobby": "music",
+      "age":"17",
+      "phone": "676 766",
+      "address":"noland"
+    },
+    {
+      "name": "Dani",
+      "Hobby": "study",
+      "age":"19",
+      "phone": "678 786",
+      "address":"havenstreet"
+    }
+  ]
+}
