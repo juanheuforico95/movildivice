@@ -5,8 +5,22 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.example.pc.tarea1p2.MainActivity">
 
-<ListView
-    android:id="@+id/list"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOAD"
+        android:id="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:onClick="request" />
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+
+
 </RelativeLayout>

@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -16,7 +18,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         contactList = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
+
+
+        lv.setOnItemClickListener(this);
 
         new GetContacts().execute();
     }
@@ -62,24 +67,18 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject c = contacts.getJSONObject(i);
                         String name = c.getString("name");
                         String hobby = c.getString("hobby");
-                        int age = c.getInt("age");
+                        String age =  String.valueOf(c.getInt("age"));
                         String address = c.getString("address");
                         String phone = c.getString("phone");
 
-                        // Phone node is JSON Object
-                        /*
-                        JSONObject phone = c.getJSONObject("phone");
-                        String mobile = phone.getString("mobile");
-                        String home = phone.getString("home");
-                        String office = phone.getString("office");
-*/
-                        // tmp hash map for single contact
+
                         HashMap<String, String> contact = new HashMap<>();
 
                         // adding each child node to HashMap key => value
                         contact.put("name", name);
                         contact.put("hobby", hobby);
                         contact.put("address", address);
+                        contact.put("age",age);
                         contact.put("phone", phone);
 
                         // adding contact to contact list
@@ -116,10 +115,28 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            ListAdapter adapter = new SimpleAdapter(MainActivity.this, contactList,
-                    R.layout.list_item, new String[]{ "name","hobby"},
-                    new int[]{R.id.email, R.id.mobile});
-            lv.setAdapter(adapter);
+
         }
+
+
     }
+    public void request(View v){
+
+        ListAdapter adapter = new SimpleAdapter(MainActivity.this, contactList,
+                R.layout.list_item, new String[]{ "name","hobby"},
+                new int[]{R.id.name, R.id.hobby});
+        lv.setAdapter(adapter); }
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        ArrayList<HashMap<String, String>> infoList;
+        infoList = new ArrayList<>();
+        infoList.add(contactList.get(i));
+       /* String nombre;
+        nombre= contactList.get(i).get("name");
+        Toast.makeText(this, "mira " + " " + nombre, Toast.LENGTH_SHORT).show();*/
+
+        ListAdapter adapter = new SimpleAdapter(MainActivity.this, infoList,
+                R.layout.all_info, new String[]{ "name","hobby","age","phone","address"},
+                new int[]{R.id.name, R.id.hobby, R.id.age, R.id.phone, R.id.address});
+        lv.setAdapter(adapter); }
+
 }
